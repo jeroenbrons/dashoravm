@@ -7,56 +7,83 @@
 
 {% block content %}
 
-        <div class="row">
-          <div class="col-md-8">
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">Login</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Authentication</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Login</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div class="card">
-
-              <form role="form" method="post" action="">
-              
                 <div class="card-header">
-                  <h5 class="title">Login</h5>
-
-                  <h6 class="card-category">
-                      Add your credentials
-                  </h6>
-                </div>
-
-                <div class="card-body">
-
-                    <div class="row">
-
-                      <div class="col-md-3 px-md-1">
-                        <div class="form-group">
-                          <label>Username</label>
-                          <input class="form-control" id="username_login" name="username" required="" type="text" value="">
-                        </div>
-                      </div>
-
+                    <div class="card-title">
+                        <span>
+                            Add your credentials
+                        </span>
                     </div>
-                    <div class="row">
+                </div>
 
-                      <div class="col-md-3 px-md-1">
-                        <div class="form-group">
-                          <label>Password</label>
-                          <input class="form-control" id="pwd_login" name="password" required="" type="password" value="">
+                <form method="post" action="#">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4">
+
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="icon-user"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Username">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="icon-lock"></i>
+                                            </span>
+                                        </div>
+                                        <input type="password" class="form-control" placeholder="Password">
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
-                      </div>
-
                     </div>
-                    
-                </div>
-                <div class="card-footer">
-                  <button type="submit" name="login" class="btn btn-fill btn-primary">Login</button>
-                  &nbsp; &nbsp;
-                  Don't have an account? <a href="/register.html" class="text-primary">Create</a>
-                </div>
+                    <div class="card-action">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        &nbsp; &nbsp;
+                        <span>Not a member?</span> Please <a href="/register.html" >Register</a>
+                    </div>
 
-              </form>
+                </form>
 
             </div>
-          </div>
-      </div>
-
+        </div>
+    </div>
+</div>
 
 {% endblock content %}
 
