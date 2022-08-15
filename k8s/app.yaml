@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashoravmdevel
+  labels:
+    app: dashoravm-devel
+spec:
+  selector:
+    matchLabels:
+      app: dashoravm-devel
+  template:
+    metadata:
+      labels:
+        app: dashoravm-devel
+    spec:
+      containers:
+      - name: dashoravm-devel
+        image: idiotoflinux/dashoravm
+        ports:
+        - containerPort: 5005
