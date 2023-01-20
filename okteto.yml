@@ -18,18 +18,17 @@ build:
   #  - OKTETO_BUILD_NGINX_REPOSITORY: image repo
   #  - OKTETO_BUILD_NGINX_IMAGE: image name
   #  - OKTETO_BUILD_NGINX_SHA: image tag sha256
-  nginx: ""
+  nginx:
+    context: .
+    dockerfile: Dockerfile
 
-  # You can use the following env vars to refer to this image in your deploy commands:
-  #  - OKTETO_BUILD__REGISTRY: image registry
-  #  - OKTETO_BUILD__REPOSITORY: image repo
-  #  - OKTETO_BUILD__IMAGE: image name
-  #  - OKTETO_BUILD__SHA: image tag sha256
 # The deploy section defines how to deploy your development environment
 # More info: https://www.okteto.com/docs/reference/manifest/#deploy
 deploy:
   compose:
     file: docker-compose.yml
+    services:
+      - nginx
 
 # The dependencies section defines other git repositories to be deployed as part of your development environment
 # More info: https://www.okteto.com/docs/reference/manifest/#dependencies
@@ -41,10 +40,15 @@ deploy:
 # More info: https://www.okteto.com/docs/reference/manifest/#dev
 dev:
   nginx:
-    image: nginx:latest
-    command: sh
+    command: bash
+    workdir: /usr/src/app
     sync:
-      - nginx:/etc/nginx/conf.d
+      - nginx:/usr/src/app
     forward:
-      - 85:85
+      - 5005:5005
+      - 8085:85
+    reverse:
+      - 9000:9000
+    volumes:
+      - /root/.cache/pip
 
