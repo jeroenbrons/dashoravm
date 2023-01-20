@@ -1,0 +1,50 @@
+name: dashoravm
+
+# The build section defines how to build the images of your development environment
+# More info: https://www.okteto.com/docs/reference/manifest/#build
+build:
+
+  # You can use the following env vars to refer to this image in your deploy commands:
+  #  - OKTETO_BUILD_APPSEED_APP_REGISTRY: image registry
+  #  - OKTETO_BUILD_APPSEED_APP_REPOSITORY: image repo
+  #  - OKTETO_BUILD_APPSEED_APP_IMAGE: image name
+  #  - OKTETO_BUILD_APPSEED_APP_SHA: image tag sha256
+  appseed-app:
+    context: .
+    dockerfile: Dockerfile
+
+  # You can use the following env vars to refer to this image in your deploy commands:
+  #  - OKTETO_BUILD_NGINX_REGISTRY: image registry
+  #  - OKTETO_BUILD_NGINX_REPOSITORY: image repo
+  #  - OKTETO_BUILD_NGINX_IMAGE: image name
+  #  - OKTETO_BUILD_NGINX_SHA: image tag sha256
+  nginx: ""
+
+  # You can use the following env vars to refer to this image in your deploy commands:
+  #  - OKTETO_BUILD__REGISTRY: image registry
+  #  - OKTETO_BUILD__REPOSITORY: image repo
+  #  - OKTETO_BUILD__IMAGE: image name
+  #  - OKTETO_BUILD__SHA: image tag sha256
+# The deploy section defines how to deploy your development environment
+# More info: https://www.okteto.com/docs/reference/manifest/#deploy
+deploy:
+  compose:
+    file: docker-compose.yml
+
+# The dependencies section defines other git repositories to be deployed as part of your development environment
+# More info: https://www.okteto.com/docs/reference/manifest/#dependencies
+# dependencies:
+#   - https://github.com/okteto/sample
+
+
+# The dev section defines how to activate a development container
+# More info: https://www.okteto.com/docs/reference/manifest/#dev
+dev:
+  nginx:
+    image: nginx:latest
+    command: sh
+    sync:
+      - nginx:/etc/nginx/conf.d
+    forward:
+      - 85:85
+
